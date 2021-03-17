@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>QuikChat</title>
+<script src="./popup.js"></script>
+<style>
+html{width:750px;height:600px;scroll-behavior:smooth;}
+body{background-color:black;font-family:arial;color:white;}
+button,input{color:white;border:1px white solid;border-radius:4px;background-color:#666;padding:5px;width:100px;transition:.3s;margin:10px;}
+input{width:500px;}
+button:hover,input:hover{background-color:#888;0}
+hr{color:white;border:1px white solid;border-radius:4px;width:90%}
+div#panel{position:fixed;bottom:10px;left:0px;width:100%;}
+#log{max-height:450px;overflow:auto;}
+</style>
+</head>
+<body>
+<center>
+<h1>QuikChat</h1>
+<hr>
+<ul id="log"></ul><br>
+<div id="panel">
+<input type="text" id="message">
+<button id="send">Send</button><br>
+</div>
+</center>
+</body>
+</html>
