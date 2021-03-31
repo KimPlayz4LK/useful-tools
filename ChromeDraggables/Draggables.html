@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<title>Draggables</title>
+<style>
+*{outline:none;}
+body{background-color:black;overflow:hidden;width:100%;height:100%;color:white;font-family:arial;}
+#bottom{position:absolute;bottom:0px;left:0px;width:100%;background-color:#333;padding:5px;text-align:center;}
+#bottom button{color:white;background-color:#555;border:solid 2px white;width:150px;}
+#bottom button:hover{background-color:#777;}
+div.draggable{background-color:#333;border-radius:10px;width:200px;height:300px;border:solid 2px white;resize:both;overflow:hidden;min-width:100px;min-height:200px;position:absolute;z-index:100;}
+div.draggable textarea{background-color:#555;color:white;width:100%;height:20%;resize:vertical;}
+div.draggable input{background-color:#555;color:white;width:80%;text-align:center;border-radius:5px;border:none;margin:5px;padding:2px;}
+div.draggableBox{background-color:#444;width:100%;height:20px;border:none;cursor:move;}
+</style>
+<body>
+<div id="draggables"></div>
+<div id="bottom"><button id="newBtn" onclick="newDraggable()">New</button></div>
+</div>
+<script>
+var draggablesCount=0;
+function dragElement(elmnt){var pos1=0,pos2=0,pos3=0,pos4=0;
+document.getElementById(elmnt.id+"header").onmousedown=dragMouseDown;
+function dragMouseDown(e){e=e||window.event;e.preventDefault();pos3=e.clientX;pos4=e.clientY;document.onmouseup=closeDragElement;document.onmousemove=elementDrag;}
+function elementDrag(e){e=e||window.event;e.preventDefault();pos1=pos3-e.clientX;pos2=pos4-e.clientY;pos3=e.clientX;pos4=e.clientY;elmnt.style.top=(elmnt.offsetTop-pos2)+ "px";elmnt.style.left=(elmnt.offsetLeft-pos1)+ "px";}
+function closeDragElement(){document.onmouseup=null;document.onmousemove=null;}
+}
+function newDraggable(){
+draggablesCount++;
+var newObj=document.createElement("div");
+newObj.innerHTML='<div class="draggable" id="draggable'+draggablesCount+'"><div class="draggableBox" id="draggable'+draggablesCount+'header"></div><center><input type="text" placeholder="Title..." value="New draggable"></center><textarea placeholder="Content..."></textarea></div>';
+document.getElementById("draggables").appendChild(newObj);
+dragElement(document.getElementById("draggable"+draggablesCount));
+}
+newDraggable();
+</script>
+</body>
+</html>
