@@ -1,11 +1,12 @@
 Set fso=CreateObject("Scripting.FileSystemObject")
 removeComments=msgbox("Would you like to remove comments?",36,"JS Code Optimizer")
-removeDoubleSpaces=msgbox("Would you like to double spaces?",36,"JS Code Optimizer")
+removeDoubleSpaces=msgbox("Would you like to remove double spaces?",36,"JS Code Optimizer")
+removeEmpty=msgbox("Would you like to remove empty lines?",36,"JS Code Optimizer")
 content=""
 Set f=fso.OpenTextFile(WScript.Arguments(0),1)
 Do Until f.AtEndOfStream
+dontAdd=false
 line=f.ReadLine
-
 if removeComments=vbYes then
 if inStr(line,"//") then
 line=Left(line,inStr(line,"//")-1)
@@ -16,7 +17,11 @@ if inStr(line,"  ") then
 line=Replace(line,"  ","")
 end if
 end if
-
+if removeEmpty=vbYes then
+if line=vbCrLf then
+dontAdd=true
+end if
+end if
 if inStr(line,", ") then
 line=Replace(line,", ",",")
 end if
@@ -42,7 +47,9 @@ if inStr(line," - ") then
 line=Replace(line," - ","-")
 end if
 
+if not dontAdd then
 content=content&line&vbCrLf
+end if
 Loop
 f.Close
 Set f=fso.OpenTextFile(WScript.Arguments(0),2)
