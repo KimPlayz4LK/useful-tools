@@ -12,13 +12,13 @@ if inStr(line,"//") then
 line=Left(line,inStr(line,"//")-1)
 end if
 end if
-if removeComments=vbYes then
+if removeDoubleSpaces=vbYes then
 if inStr(line,"  ") then
 line=Replace(line,"  ","")
 end if
 end if
 if removeEmpty=vbYes then
-if line=vbCrLf then
+if line="" then
 dontAdd=true
 end if
 end if
@@ -47,7 +47,7 @@ if inStr(line," - ") then
 line=Replace(line," - ","-")
 end if
 
-if not dontAdd then
+if dontAdd=false then
 content=content&line&vbCrLf
 end if
 Loop
