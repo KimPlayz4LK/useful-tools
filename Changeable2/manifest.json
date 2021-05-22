@@ -1,0 +1,10 @@
+{
+"manifest_version":2,
+"name":"Changeable",
+"description":"",
+"version":"2.0",
+"permissions":["activeTab","tabs","https://sources.kimplayz4lk.repl.co/"],
+"content_security_policy":"script-src 'self' 'unsafe-inline' 'unsafe-eval' https://sources.kimplayz4lk.repl.co 'nonce-ch4ng3abl3' 'sha256-OoXN218d/uoV87FGcvnO1t/vf580PfHTr4YY3z/RUl0='",
+"browser_action":{"default_icon":"icon.png","default_popup":"popup.html"},
+"content_scripts":[{"matches":["<all_urls>"],"js":["background.js"]}]
+}
