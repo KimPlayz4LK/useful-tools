@@ -1,0 +1,10 @@
+{
+"manifest_version":2,
+"name":"yt2audio",
+"description":"Download music from YouTube with a simple click!",
+"version":"1.0",
+"browser_action":{"default_icon":"icon.png"},
+"permissions":["activeTab","tabs"],
+"content_scripts":[{"matches":["<all_urls>"],"js":["background.js"]}],
+"icons": {"16":"icon.png","48":"icon.png","128":"icon.png"}
+}
